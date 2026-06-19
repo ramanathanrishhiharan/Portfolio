@@ -122,8 +122,7 @@ export default function DeliversSection() {
 
       {/* Footer paragraph */}
       <p className="text-[18px] text-[#5b5959] leading-relaxed text-left md:text-center max-w-[560px] mx-auto">
-        <BlurredStagger text="This works because I don&apos;t just build what you ask for,
-        " /><br/>
+        <BlurredStagger text="This works because I don&apos;t just build what you ask for," />
         <BlurredStagger text="I build what your business actually needs." />
         
       </p>
