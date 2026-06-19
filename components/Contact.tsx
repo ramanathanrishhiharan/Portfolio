@@ -54,8 +54,10 @@ const MOUNTAIN_IMG =
   'https://images.unsplash.com/photo-1454496522488-7a8e488e8606?auto=format&fit=crop&w=2000&q=80'
 
 export function ContactSection() {
-  const [form, setForm] = useState({ name: '', email: '', message: '' })
+  const [form, setForm] = useState({ name: '', email: '', message: '', company: '' })
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -63,10 +65,45 @@ export function ContactSection() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  const handleSubmit = () => {
-    setSubmitted(true)
-    setForm({ name: '', email: '', message: '' })
-    setTimeout(() => setSubmitted(false), 4000)
+  const handleSubmit = async () => {
+    // Bots tend to fill every field instantly — if the honeypot has a value,
+    // silently "succeed" without sending anything.
+    if (form.company) {
+      setSubmitted(true)
+      setForm({ name: '', email: '', message: '', company: '' })
+      setTimeout(() => setSubmitted(false), 4000)
+      return
+    }
+
+    if (!form.name || !form.email || !form.message) {
+      setError('Please fill in all fields.')
+      return
+    }
+
+    setLoading(true)
+    setError('')
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+
+      const data = await res.json()
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to send message')
+      }
+
+      setSubmitted(true)
+      setForm({ name: '', email: '', message: '', company: '' })
+      setTimeout(() => setSubmitted(false), 4000)
+    } catch (err: any) {
+      setError(err.message || 'Something went wrong. Please try again.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -84,10 +121,10 @@ export function ContactSection() {
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#f7f7f5] via-[#f7f7f5]/40 to-[#f7f7f5]"
+        className="pointer-events-none absolute inset-0 bg-linear-to-b from-[#f7f7f5] via-[#f7f7f5]/40 to-[#f7f7f5]"
       />
 
-      <div className="relative mx-auto max-w-[1200px] px-6 md:px-16 xl:px-20 pt-20 pb-10">
+      <div className="relative mx-auto max-w-300 px-6 md:px-16 xl:px-20 pt-20 pb-10">
 
         {/* Heading */}
         <h2
@@ -109,6 +146,18 @@ export function ContactSection() {
           </p>
 
           <div className="mx-auto mt-6 space-y-4 text-left">
+            {/* Honeypot field — hidden from real users, bots tend to fill it */}
+            <input
+              type="text"
+              name="company"
+              value={form.company}
+              onChange={handleChange}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="absolute left-[-9999px] h-0 w-0 opacity-0"
+            />
+
             {/* Name full width, email full width below */}
             <input
               id="name"
@@ -147,10 +196,11 @@ export function ContactSection() {
 
             <button
               onClick={handleSubmit}
-              className="group flex h-14 w-full items-center justify-center gap-2 rounded-full bg-[#B5E64D] px-8 text-base font-semibold text-[#0a0a0a] transition-all duration-200 hover:scale-[1.01] hover:bg-[#0a0a0a] hover:text-white active:scale-100"
+              disabled={loading}
+              className="group flex h-14 w-full items-center justify-center gap-2 rounded-full bg-[#B5E64D] px-8 text-base font-semibold text-[#0a0a0a] transition-all duration-200 hover:scale-[1.01] hover:bg-[#0a0a0a] hover:text-white active:scale-100 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:scale-100 disabled:hover:bg-[#B5E64D] disabled:hover:text-[#0a0a0a]"
               style={{ fontFamily: 'var(--font-primary)' }}
             >
-              Send
+              {loading ? 'Sending...' : 'Send'}
               <ArrowRightIcon className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
             </button>
 
@@ -161,6 +211,16 @@ export function ContactSection() {
                 style={{ fontFamily: 'var(--font-primary)' }}
               >
                 Thanks! Your message has been sent.
+              </p>
+            )}
+
+            {error && (
+              <p
+                role="alert"
+                className="text-center text-sm font-medium text-red-500"
+                style={{ fontFamily: 'var(--font-primary)' }}
+              >
+                {error}
               </p>
             )}
           </div>

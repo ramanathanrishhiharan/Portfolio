@@ -15,13 +15,13 @@ export function NumbersSection() {
   })
 
   return (
-    <section className="w-full max-w-[1200px] mx-auto px-6 md:px-16 xl:px-20 py-20 font-sans">
+    <section className="w-full max-w-300 mx-auto px-6 md:px-16 xl:px-20 py-20 font-sans">
       {/* Inner black card */}
-      <div className="relative overflow-hidden rounded-[12px] bg-black text-white">
+      <div className="relative overflow-hidden rounded-xl bg-black text-white">
 
         {/* Background Glow */}
-        <div className="pointer-events-none absolute -bottom-40 left-0 h-[520px] w-[60%] rounded-full bg-[#B5E64D]/25 blur-[140px]" />
-        <div className="pointer-events-none absolute -bottom-20 right-10 h-[300px] w-[40%] rounded-full bg-white/5 blur-[120px]" />
+        <div className="pointer-events-none absolute -bottom-40 left-0 h-130 w-[60%] rounded-full bg-[#B5E64D]/25 blur-[140px]" />
+        <div className="pointer-events-none absolute -bottom-20 right-10 h-75 w-[40%] rounded-full bg-white/5 blur-[120px]" />
 
         {/* Content */}
         <div className="relative px-6 pt-10 sm:px-10 sm:pt-14">

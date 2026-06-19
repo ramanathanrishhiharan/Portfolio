@@ -81,7 +81,7 @@ function PillRow({
 export default function DeliversSection() {
   return (
     <section
-      className="w-full max-w-[1200px] mx-auto px-6 md:px-16 xl:px-20 py-20 flex flex-col gap-10"
+      className="w-full max-w-300 mx-auto px-6 md:px-16 xl:px-20 py-20 flex flex-col gap-10"
       style={{ fontFamily: "var(--font-primary)" }}
     >
       {/* Headline */}
@@ -121,7 +121,7 @@ export default function DeliversSection() {
       </div>
 
       {/* Footer paragraph */}
-      <p className="text-[18px] text-[#5b5959] leading-relaxed text-left md:text-center max-w-[560px] mx-auto">
+      <p className="text-[18px] text-[#5b5959] leading-relaxed text-left md:text-center max-w-140 mx-auto">
         <BlurredStagger text="This works because I don&apos;t just build what you ask for," />
         <BlurredStagger text="I build what your business actually needs." />
         
