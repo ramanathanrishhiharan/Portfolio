@@ -89,10 +89,7 @@ export default function Hero() {
           className="text-[18px] font-normal leading-relaxed text-[#5b5959] m-0 max-w-140 text-left sm:text-center"
           style={{ fontFamily: "var(--font-primary)" }}
         >
-          <BlurredStagger
-            text="From lead-generating websites to AI-integrated tools, I bring
-          technical depth and product thinking to everything I build."
-          />
+          <BlurredStagger text="I help startups and businesses launch websites, web applications, and AI-powered solutions that generate leads, automate workflows, and support growth. From strategy to deployment, I handle the entire development process." />
         </p>
       </div>
     </section>

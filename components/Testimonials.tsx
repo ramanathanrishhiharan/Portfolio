@@ -11,37 +11,39 @@ type Testimonial = {
 };
 
 const TESTIMONIALS: Testimonial[] = [
-  {
-    quote:
-      "Rishi built our entire website from scratch. Clean, fast, and exactly what we envisioned. Knew exactly what to do without us having to explain twice.",
-    name: "PrimeLeed Team",
-    role: "Education Consultancy, UK",
-  },
-  {
-    quote:
-      "He took our messy requirements and turned them into a real product. The attention to detail on both the design and the code was genuinely impressive.",
-    name: "Alex R.",
-    role: "Startup Founder",
-  },
-  {
-    quote:
-      "We needed someone who could handle the full stack — design, backend, deployment. Rishi did all of it, and did it well.",
-    name: "Sam K.",
-    role: "Product Manager",
-  },
-  {
-    quote:
-      "Delivered faster than expected, asked the right questions, and the codebase was actually readable. Rare combination.",
-    name: "Lena M.",
-    role: "Tech Lead",
-  },
-  {
-    quote:
-      "He understood the business goal, not just the technical brief. That made the whole process smooth and the output actually useful.",
-    name: "Emily T.",
-    role: "E-commerce Owner",
-  },
+
+{
+quote:
+"We started with a rough idea and a list of requirements that weren't clearly defined. Rishi helped structure the project, identify what mattered most, and delivered a product that was far beyond what we initially expected.",
+name: "Alex R.",
+role: "Startup Founder",
+},
+{
+quote:
+"Finding someone who can design, build, and deploy a complete product is difficult. Rishi handled the entire process confidently and consistently delivered high-quality work with minimal supervision.",
+name: "Sam K.",
+role: "Product Manager",
+},
+{
+quote:
+"What stood out was his attention to detail and willingness to understand the problem before writing code. The codebase was clean, maintainable, and easy for our team to work with after delivery.",
+name: "Lena M.",
+role: "Tech Lead",
+},
+{
+quote:
+"Rishi focused on understanding our business objectives rather than just completing tasks. His suggestions improved the final product significantly, and the entire development process felt smooth and professional.",
+name: "Emily T.",
+role: "E-commerce Owner",
+},
+{
+quote:
+"Rishi built our website from the ground up and handled everything from design to deployment. The final product was fast, modern, and aligned perfectly with our business goals. Communication was excellent throughout the project.",
+name: "PrimeLeed Team",
+role: "Education Consultancy, UK",
+},
 ];
+
 
 const CARD_SHADOW = {
   boxShadow: "-2px 12px 22.3px 2px rgba(0,0,0,0.25)",

@@ -37,16 +37,16 @@ function Ghost() {
 
 const problems = [
   {
-    quote: '"My website isn\'t bringing in customers."',
-    answer: "I fix that.",
+    quote: '"Getting traffic but no customers?"',
+    answer: "I’ll turn your website into a conversion engine.",
   },
   {
-    quote: '"I can\'t find the right tool for my workflow."',
-    answer: "I build it.",
+    quote: '“Can’t find a tool that fits your workflow?”',
+    answer: "I build exactly what you need.",
   },
   {
-    quote: '"I want AI in my product but don\'t know how."',
-    answer: "I make it happen.",
+    quote: '"Want AI in your product but not sure how?"',
+    answer: "I’ll integrate AI where it actually adds value.",
   },
 ]
 
@@ -54,26 +54,26 @@ const mobileRows = [
   {
     icon: <FaRocket size={24} color="#E8453C" />,
     rotate: -6,
-    quote: '"My website isn\'t bringing in customers."',
-    answer: "I fix that.",
+    quote: '"Getting traffic but no customers?"',
+    answer: "I’ll turn your website into a conversion engine.",
   },
   {
     icon: <FaLaptopCode size={24} color="#2563EB" />,
     rotate: 5,
-    quote: '"I can\'t find the right tool for my workflow."',
-    answer: "I build it.",
+    quote: '“Can’t find a tool that fits your workflow?”',
+    answer: "I build exactly what you need.",
   },
   {
     icon: <SiClaude size={24} color="#D97706" />,
     rotate: -4,
-    quote: '"I want AI in my product but don\'t know how."',
-    answer: "I make it happen.",
+    quote: '"Want AI in your product but not sure how?"',
+    answer: "I’ll integrate AI where it actually adds value.",
   },
   {
     icon: <FaGlobe size={24} color="#2563EB" />,
     rotate: 6,
-    quote: '"I have an idea but don\'t know where to start."',
-    answer: "Let's build it.",
+    quote: '"Have an idea but don’t know where to start?"',
+    answer: "I’ll turn it into a clear, buildable product.",
   },
 ]
 
@@ -128,11 +128,11 @@ export default function ProblemSection() {
 
           <div className="w-55 text-center flex flex-col gap-2">
             <p className="text-[18px] text-[#5b5959] leading-snug">
-              &ldquo;I have an idea but don&apos;t<br />
-              know where to start.&rdquo;
+              &ldquo;Have an idea but <br />
+              don’t know where to start?
             </p>
             <p className="text-[18px] font-semibold text-[#0a0a0a]">
-              Let&apos;s build it.
+              I’ll turn it into a clear, buildable product.
             </p>
           </div>
 
