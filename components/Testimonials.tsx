@@ -103,24 +103,23 @@ const positions = [
 export function Testimonials() {
   return (
     <section
-      className="w-full max-w-[1200px] mx-auto px-6 md:px-16 xl:px-20 py-20 overflow-hidden"
+      className="w-full max-w-300 mx-auto px-6 md:px-16 xl:px-20 py-20 overflow-hidden"
       style={{ fontFamily: "var(--font-primary)" }}
     >
       {/* Header — centered */}
-      <div className="flex flex-col items-center text-center gap-3 mb-14">
+      {/* Header — centered on desktop, left-aligned on mobile */}
+      <div className="flex flex-col items-start text-left lg:items-center lg:text-center gap-3 mb-14">
         <h2
           className="text-[42px] md:text-[48px] font-bold leading-[1.1] text-[#0a0a0a]"
           style={{ fontFamily: "var(--font-primary)" }}
         >
-            <BlurredStagger text="What clients actually say." />
-          
+          <BlurredStagger text="What clients actually say." />
         </h2>
         <p
-          className="text-[18px] text-[#5b5959] leading-relaxed max-w-[340px]"
+          className="text-[18px] text-[#5b5959] leading-relaxed max-w-85"
           style={{ fontFamily: "var(--font-primary)" }}
         >
-            <BlurredStagger text="Real feedback from people I&apos;ve built real things with." />
-          
+          <BlurredStagger text="Real feedback from people I've built real things with." />
         </p>
       </div>
 
@@ -133,7 +132,7 @@ export function Testimonials() {
 
       {/* Desktop: scattered absolute layout */}
       <div className="hidden lg:flex justify-center">
-        <div className="relative h-[580px] w-[860px]">
+        <div className="relative h-145 w-215">
           {TESTIMONIALS.map((t, i) => (
             <div key={t.name} className={positions[i]}>
               <Card {...t} />

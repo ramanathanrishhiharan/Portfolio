@@ -25,15 +25,15 @@ const projects = [
 export default function ProjectsSection() {
   return (
     <section
-      className="w-full max-w-[1200px] mx-auto px-6 md:px-16 xl:px-20 py-20 flex flex-col gap-12"
+      className="w-full max-w-300 mx-auto px-6 md:px-16 xl:px-20 py-20 flex flex-col gap-12"
       style={{ fontFamily: "var(--font-primary)" }}
     >
 
       {/* ── Header row: headline left | supporting text right ── */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-        <h2 className="text-[42px] md:text-[48px] font-bold leading-[1.1] text-[#0a0a0a] max-w-[520px]">
+        <h2 className="text-[42px] md:text-[48px] font-bold leading-[1.1] text-[#0a0a0a] max-w-130">
           <BlurredStagger text="Don&apos;t take my word for it," />
-          <br/>
+          
           <BlurredStagger text="see it live." />
           
           
@@ -52,17 +52,17 @@ export default function ProjectsSection() {
             href={url}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex flex-col gap-4 rounded-[12px] bg-white p-4 transition-transform duration-300 hover:-translate-y-1"
+            className="group flex flex-col gap-4 rounded-xl bg-white p-4 transition-transform duration-300 hover:-translate-y-1"
             style={CARD_SHADOW}
           >
             {/* Screenshot */}
-            <div className="relative w-full overflow-hidden rounded-[12px]">
+            <div className="relative w-full overflow-hidden rounded-xl">
               <Image
                 src={image}
                 alt={name}
                 width={1200}
                 height={750}
-                className="w-full h-auto object-cover rounded-[12px]"
+                className="w-full h-auto object-cover rounded-xl"
               />
 
               {/* Ongoing badge — top-right inside image */}

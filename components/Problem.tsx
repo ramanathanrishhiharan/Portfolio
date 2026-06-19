@@ -19,7 +19,7 @@ function IconBox({
   return (
     <div
       className={`${
-        small ? "w-16 h-16 rounded-xl" : "w-[88px] h-[88px] rounded-2xl"
+        small ? "w-16 h-16 rounded-xl" : "w-22 h-22 rounded-2xl"
       } bg-white flex items-center justify-center shrink-0`}
       style={{
         ...SHADOW,
@@ -32,7 +32,7 @@ function IconBox({
 }
 
 function Ghost() {
-  return <div className="w-[88px] h-[88px] shrink-0" aria-hidden />
+  return <div className="w-22 h-22 shrink-0" aria-hidden />
 }
 
 const problems = [
@@ -102,8 +102,8 @@ export default function ProblemSection() {
               {icon}
             </IconBox>
             <div className="flex flex-col gap-1 pt-1">
-              <p className="text-[15px] text-[#5b5959] leading-snug">{quote}</p>
-              <p className="text-[15px] font-semibold text-[#0a0a0a]">{answer}</p>
+              <p className="text-[18px] text-[#5b5959] leading-snug">{quote}</p>
+              <p className="text-[18px] font-semibold text-[#0a0a0a]">{answer}</p>
             </div>
           </div>
         ))}
@@ -126,7 +126,7 @@ export default function ProblemSection() {
             <FaLaptopCode size={50} color="#2563EB" />
           </IconBox>
 
-          <div className="w-[220px] text-center flex flex-col gap-2">
+          <div className="w-55 text-center flex flex-col gap-2">
             <p className="text-[18px] text-[#5b5959] leading-snug">
               &ldquo;I have an idea but don&apos;t<br />
               know where to start.&rdquo;
@@ -154,7 +154,7 @@ export default function ProblemSection() {
       {/* ══════════════════════════════════════
           DESKTOP THREE PROBLEM STATEMENTS (md and up)
           ══════════════════════════════════════ */}
-      <div className="hidden md:grid grid-cols-3 gap-10 w-full max-w-[860px] text-center">
+      <div className="hidden md:grid grid-cols-3 gap-10 w-full max-w-215 text-center">
         {problems.map(({ quote, answer }) => (
           <div key={answer} className="flex flex-col gap-2">
             <p className="text-[18px] text-[#5b5959] leading-snug">{quote}</p>
@@ -172,7 +172,7 @@ export default function ProblemSection() {
             <FaGlobe size={56} color="#2563EB" />
           </IconBox>
 
-          <div className="w-[88px] h-[88px] shrink-0" aria-hidden />
+          <div className="w-22 h-22 shrink-0" aria-hidden />
 
           <IconBox rotate={6}>
             <SiClaude size={56} color="#D97706" />
