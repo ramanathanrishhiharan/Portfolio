@@ -34,7 +34,7 @@ export default function Hero() {
         {/* Hero image */}
         <div className="shrink-0 order-first md:order-0">
           <Image
-            src="/hero3.png"
+            src="/hero.png"
             alt="Rishiharan"
             width={320}
             height={420}
