@@ -1,96 +1,225 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import Image from "next/image";
-import { MdLocationOn } from "react-icons/md";
-import { MdVerified } from "react-icons/md";
+import { motion } from "motion/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { MdLocationOn, MdVerified } from "react-icons/md";
 import { BlurredStagger } from "./blurtext";
 
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
 export default function Hero() {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const rotateX = useRef<((value: number) => void) | null>(null);
+  const rotateY = useRef<((value: number) => void) | null>(null);
+
+  useEffect(() => {
+    if (!cardRef.current) return;
+    const card = cardRef.current;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        card,
+        { y: 90, opacity: 0, scale: 0.94, rotateX: 8 },
+        {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          rotateX: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 90%",
+            toggleActions: "play none none none",
+          },
+        },
+      );
+
+      gsap.to(card, {
+        y: -50,
+        ease: "none",
+        scrollTrigger: {
+          trigger: card,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 0.8,
+        },
+      });
+
+      rotateX.current = gsap.quickTo(card, "rotateX", {
+        duration: 0.6,
+        ease: "power3",
+      });
+      rotateY.current = gsap.quickTo(card, "rotateY", {
+        duration: 0.6,
+        ease: "power3",
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current || !rotateX.current || !rotateY.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width - 0.5;
+    const py = (e.clientY - rect.top) / rect.height - 0.5;
+    rotateY.current(px * 10);
+    rotateX.current(-py * 10);
+  };
+
+  const handleMouseLeave = () => {
+    rotateX.current?.(0);
+    rotateY.current?.(0);
+  };
+
   return (
-    <section className="w-full max-w-350 mx-auto px-6 sm:px-10 md:px-16 xl:px-20 pt-12 sm:pt-14 md:pt-16 pb-16 sm:pb-20 flex flex-col items-center gap-8 text-center">
-      {/* Visual row: badge + image + badge */}
-      <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-10 w-full">
-        {/* Left badge — location */}
-        <div className="flex flex-row items-center gap-4 md:flex-col md:items-center md:gap-3 md:max-w-40">
-          <div
-            className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-full bg-white flex items-center justify-center shrink-0"
-            style={{ boxShadow: "0px 4px 6px 2px rgba(0,0,0,0.25)" }}
+    <section id="home" className="w-full px-3 sm:px-4 pt-3 sm:pt-4">
+      <div className="relative w-full min-h-[92vh] rounded-[28px] sm:rounded-[36px] overflow-hidden">
+        <Image
+          src="/herosky.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center -z-10"
+        />
+
+        <div className="w-full max-w-350 mx-auto px-5 sm:px-10 md:px-16 xl:px-20 pt-24 sm:pt-32 md:pt-40 pb-14 flex flex-col items-center text-center">
+          <h1
+            className="text-[36px] sm:text-[52px] lg:text-[64px] font-semibold leading-[1.15] text-[#0a0a0a] m-0 max-w-[1400px]"
+            style={{ fontFamily: "var(--font-primary)" }}
           >
-            <MdLocationOn
-              size={32}
-              className="sm:text-[36px] md:text-[40px]"
-              color="#B5E64D"
-            />
-          </div>
-          <div className="text-left md:text-center">
+            <BlurredStagger text="Get a website that actually turns visitors into paying customers." />
+          </h1>
+
+          <p
+            className="text-[18px] sm:text-[19px] font-medium leading-relaxed text-[#4a4a4a] mt-5 max-w-[1400px]"
+            style={{ fontFamily: "var(--font-primary)" }}
+          >
+            <BlurredStagger text="Without months of back and forth, a generic template, or a developer who disappears the moment it's live." />
+          </p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.5 }}
+            className="flex flex-col sm:flex-row items-center gap-3 sm:gap-5 mt-7"
+          >
+            <div className="flex items-center gap-2">
+              <MdVerified size={20} color="#6B9E1E" />
+              <span
+                className="text-[18px]  text-[#0a0a0a]"
+                style={{ fontFamily: "var(--font-primary)" }}
+              >
+                2 live client products shipped
+              </span>
+            </div>
+            <span className="hidden sm:block w-1 h-1 rounded-full bg-[#0a0a0a]/25" />
+            <div className="flex items-center gap-2">
+              <MdLocationOn size={20} color="#6B9E1E" />
+              <span
+                className="text-[18px]  text-[#0a0a0a]"
+                style={{ fontFamily: "var(--font-primary)" }}
+              >
+                Sri Lanka + Remote
+              </span>
+            </div>
+          </motion.div>
+
+          <motion.a
+            href="#work"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.65 }}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className="mt-8 inline-flex items-center gap-2 bg-[#B5E64D] text-[#0a0a0a] px-8 py-4 rounded-full font-bold text-[18px] transition-colors duration-300 hover:bg-[#0a0a0a] hover:text-white"
+            style={{ fontFamily: "var(--font-primary)" }}
+          >
+            See the work →
+          </motion.a>
+
+          <div
+            ref={cardRef}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            className="relative mt-16 sm:mt-20 w-full max-w-140 rounded-3xl bg-white shadow-2xl p-6 sm:p-7 text-left"
+            style={{ transformStyle: "preserve-3d", willChange: "transform" }}
+          >
+            <div className="flex items-center justify-between mb-1">
+              <span
+                className="text-[18px] font-bold text-[#0a0a0a]"
+                style={{ fontFamily: "var(--font-primary)" }}
+              >
+                PrimeLeed
+              </span>
+              <span className="flex items-center gap-1.5 text-[18px] font-semibold text-[#6B9E1E]">
+                <span className="w-2 h-2 rounded-full bg-[#6B9E1E] animate-pulse" />
+                Live now
+              </span>
+            </div>
+
             <p
-              className="text-[14px] sm:text-[14px] md:text-[13px] font-semibold leading-snug text-[#0a0a0a] m-0"
+              className="text-[18px] text-[#5b5b5b] font-medium mt-1 mb-5"
               style={{ fontFamily: "var(--font-primary)" }}
             >
-              Based in Srilanka
-              <br className="hidden sm:block" /> Working World Wide
+              From cold visitor to enrolled student. Tracked, in real time.
             </p>
+
+            <div className="grid grid-cols-3 gap-3">
+              <div className="rounded-2xl bg-[#EFF7E3] p-4">
+                <p className="text-[18px] text-[#5b6b45] font-semibold m-0">
+                  New leads
+                </p>
+                <p className="text-[28px] font-bold text-[#0a0a0a] m-0">12</p>
+              </div>
+              <div className="rounded-2xl bg-[#EFF7E3] p-4">
+                <p className="text-[18px] text-[#5b6b45] font-semibold m-0">
+                  In chat
+                </p>
+                <p className="text-[28px] font-bold text-[#0a0a0a] m-0">10</p>
+              </div>
+              <div className="rounded-2xl bg-[#EFF7E3] p-4">
+                <p className="text-[18px] text-[#5b6b45] font-semibold m-0">
+                  Closed
+                </p>
+                <p className="text-[28px] font-bold text-[#0a0a0a] m-0">1</p>
+              </div>
+            </div>
+
+            <div className="mt-4 flex items-start gap-3 rounded-2xl bg-[#f7f7f5] p-4">
+              <div className="w-10 h-10 shrink-0 rounded-full bg-[#0a0a0a] text-white flex items-center justify-center text-[18px] font-bold">
+                A
+              </div>
+              <div className="min-w-0">
+                <p className="text-[18px] font-semibold text-[#0a0a0a] m-0">
+                  Aisha: Just applied, when do I hear back?
+                </p>
+                <p className="text-[18px] text-[#6B9E1E] font-semibold m-0 mt-0.5">
+                  Replied in 4 minutes
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-4 flex items-center justify-between">
+              <span
+                className="text-[18px] text-[#0a0a0a] font-semibold"
+                style={{ fontFamily: "var(--font-primary)" }}
+              >
+                Trusted by 2,000+ students
+              </span>
+              <span className="text-[18px] font-bold text-[#6B9E1E]">
+                5.0 ★
+              </span>
+            </div>
           </div>
         </div>
-
-        {/* Hero image */}
-        <div className="shrink-0 order-first md:order-0">
-          <Image
-            src="/hero.png"
-            alt="Rishiharan"
-            width={320}
-            height={420}
-            priority
-            className="rounded-3xl object-cover object-top w-65 h-95 sm:w-72.5 sm:h-97.5 md:w-[320px] md:h-115"
-          />
-        </div>
-
-        {/* Right badge — value prop */}
-        <div className="flex flex-row items-center gap-4 md:flex-col md:items-center md:gap-3 md:max-w-40">
-          <div
-            className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-full bg-white flex items-center justify-center shrink-0"
-            style={{ boxShadow: "0px 4px 6px 2px rgba(0,0,0,0.25)" }}
-          >
-            <MdVerified
-              size={32}
-              className="sm:text-[36px] md:text-[40px]"
-              color="#B5E64D"
-            />
-          </div>
-          <div className="text-left md:text-center">
-            <p
-              className="text-[14px] sm:text-[14px] md:text-[13px] font-semibold leading-snug text-[#0a0a0a] m-0"
-              style={{ fontFamily: "var(--font-primary)" }}
-            >
-              Helping Business Growth
-              <br className="hidden sm:block" /> with Softwares
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Copy block */}
-      <div className="flex flex-col items-center gap-4 w-full max-w-205">
-        <h1
-          className="text-[28px] sm:text-[36px] md:text-[42px] lg:text-[48px] font-bold leading-[1.2] md:leading-[1.15] text-[#0a0a0a] m-0 text-left sm:text-center"
-          style={{ fontFamily: "var(--font-primary)" }}
-        >
-          <BlurredStagger text="Hello, I'm Rishiharan" />
-          <br />
-          <BlurredStagger text="Full-stack developer and AI &amp; ML" />
-          <br className="hidden sm:block" />{" "}
-          <BlurredStagger
-            text="Enthusiast, I build web products
-          "
-          />
-          <br />
-          <BlurredStagger text="that move businesses forward." />
-        </h1>
-
-        <p
-          className="text-[18px] font-normal leading-relaxed text-[#5b5959] m-0 max-w-140 text-left sm:text-center"
-          style={{ fontFamily: "var(--font-primary)" }}
-        >
-          <BlurredStagger text="I help startups and businesses launch websites, web applications, and AI-powered solutions that generate leads, automate workflows, and support growth. From strategy to deployment, I handle the entire development process." />
-        </p>
       </div>
     </section>
   );

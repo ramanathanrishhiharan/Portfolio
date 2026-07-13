@@ -1,11 +1,11 @@
-import Image from "next/image"
-import Link from "next/link"
-import { FiArrowUpRight } from "react-icons/fi"
-import { BlurredStagger } from "./blurtext"
+import Image from "next/image";
+import Link from "next/link";
+import { FiArrowUpRight } from "react-icons/fi";
+import { BlurredStagger } from "./blurtext";
 
 const CARD_SHADOW = {
   boxShadow: "-2px 12px 22.3px 2px rgba(0,0,0,0.10)",
-}
+};
 
 const projects = [
   {
@@ -20,26 +20,25 @@ const projects = [
     url: "https://www.studentfinancechecker.co.uk/",
     ongoing: true,
   },
-]
+];
 
 export default function ProjectsSection() {
   return (
     <section
+      id="work"
       className="w-full max-w-300 mx-auto px-6 md:px-16 xl:px-20 py-20 flex flex-col gap-12"
       style={{ fontFamily: "var(--font-primary)" }}
     >
-
       {/* ── Header row: headline left | supporting text right ── */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <h2 className="text-[42px] md:text-[48px] font-bold leading-[1.1] text-[#0a0a0a] max-w-130">
-          <BlurredStagger text="Don&apos;t take my word for it," />
-          
+          <BlurredStagger text="Don't take my word for it," />
+
           <BlurredStagger text="see it live." />
-          
-          
         </h2>
         <p className="text-[18px] text-[#5b5959] leading-relaxed max-w-[320px] md:text-right">
-          <BlurredStagger text="Every project here solved a real" /><br className="hidden md:block" />
+          <BlurredStagger text="Every project here solved a real" />
+          <br className="hidden md:block" />
           <BlurredStagger text="problem for a real person or business." />
         </p>
       </div>
@@ -86,7 +85,6 @@ export default function ProjectsSection() {
           </Link>
         ))}
       </div>
-
     </section>
-  )
+  );
 }

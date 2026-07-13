@@ -1,117 +1,122 @@
-'use client'
-import React, { useState } from 'react'
+"use client";
+import React, { useState } from "react";
 import {
   CalendarSyncIcon,
   MailOpenIcon,
   MapPinnedIcon,
   ArrowRightIcon,
-} from 'lucide-react'
+} from "lucide-react";
 
 type InfoItem = {
-  icon: React.ReactNode
-  label: string
-  value: string
-}
+  icon: React.ReactNode;
+  label: string;
+  value: string;
+};
 
 const CARD_SHADOW = {
-  boxShadow: '-2px 12px 22.3px 2px rgba(0,0,0,0.25)',
-}
+  boxShadow: "-2px 12px 22.3px 2px rgba(0,0,0,0.25)",
+};
 
 const INFO: InfoItem[] = [
   {
     icon: <CalendarSyncIcon className="h-5 w-5" strokeWidth={1.75} />,
-    label: 'Call Today',
-    value: '+94 771 165 514',
+    label: "Call Today",
+    value: "+94 771 165 514",
   },
   {
     icon: <MailOpenIcon className="h-5 w-5" strokeWidth={1.75} />,
-    label: 'Email me',
-    value: 'ramanathanrishiharan2003@gmail.com',
+    label: "Email me",
+    value: "ramanathanrishiharan2003@gmail.com",
   },
   {
     icon: <MapPinnedIcon className="h-5 w-5" strokeWidth={1.75} />,
-    label: 'Location',
-    value: 'Sri Lanka',
+    label: "Location",
+    value: "Sri Lanka",
   },
-]
+];
 
 const SOCIALS = [
   {
-    label: 'Instagram',
-    href: 'https://www.instagram.com/ramanathanrishi74/',
+    label: "Instagram",
+    href: "https://www.instagram.com/ramanathanrishi74/",
   },
   {
-    label: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/ramanathanrishiharan74/',
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/ramanathanrishiharan74/",
   },
-   {
-    label: 'GitHub',
-    href: 'https://github.com/ramanathanrishhiharan',
+  {
+    label: "GitHub",
+    href: "https://github.com/ramanathanrishhiharan",
   },
-]
+];
 
 const MOUNTAIN_IMG =
-  'https://images.unsplash.com/photo-1454496522488-7a8e488e8606?auto=format&fit=crop&w=2000&q=80'
+  "https://images.unsplash.com/photo-1454496522488-7a8e488e8606?auto=format&fit=crop&w=2000&q=80";
 
 export function ContactSection() {
-  const [form, setForm] = useState({ name: '', email: '', message: '', company: '' })
-  const [submitted, setSubmitted] = useState(false)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+    company: "",
+  });
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
-  }
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
   const handleSubmit = async () => {
     // Bots tend to fill every field instantly — if the honeypot has a value,
     // silently "succeed" without sending anything.
     if (form.company) {
-      setSubmitted(true)
-      setForm({ name: '', email: '', message: '', company: '' })
-      setTimeout(() => setSubmitted(false), 4000)
-      return
+      setSubmitted(true);
+      setForm({ name: "", email: "", message: "", company: "" });
+      setTimeout(() => setSubmitted(false), 4000);
+      return;
     }
 
     if (!form.name || !form.email || !form.message) {
-      setError('Please fill in all fields.')
-      return
+      setError("Please fill in all fields.");
+      return;
     }
 
-    setLoading(true)
-    setError('')
+    setLoading(true);
+    setError("");
 
     try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
-      })
+      });
 
-      const data = await res.json()
+      const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.error || 'Failed to send message')
+        throw new Error(data.error || "Failed to send message");
       }
 
-      setSubmitted(true)
-      setForm({ name: '', email: '', message: '', company: '' })
-      setTimeout(() => setSubmitted(false), 4000)
+      setSubmitted(true);
+      setForm({ name: "", email: "", message: "", company: "" });
+      setTimeout(() => setSubmitted(false), 4000);
     } catch (err: any) {
-      setError(err.message || 'Something went wrong. Please try again.')
+      setError(err.message || "Something went wrong. Please try again.");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <section
       id="contact"
       aria-labelledby="contact-heading"
       className="relative w-full overflow-hidden bg-[#f7f7f5]"
-      style={{ fontFamily: 'var(--font-primary)' }}
+      style={{ fontFamily: "var(--font-primary)" }}
     >
       {/* Misty mountain backdrop */}
       <div
@@ -125,22 +130,20 @@ export function ContactSection() {
       />
 
       <div className="relative mx-auto max-w-300 px-6 md:px-16 xl:px-20 pt-20 pb-10">
-
         {/* Heading */}
         <h2
           id="contact-heading"
           className="text-center text-6xl font-extrabold leading-[0.95] tracking-tight text-neutral-900 sm:text-7xl lg:text-8xl"
-          style={{ fontFamily: 'var(--font-primary)' }}
+          style={{ fontFamily: "var(--font-primary)" }}
         >
-          Let&rsquo;s Work{' '}
-          <span className="text-neutral-400">Together</span>
+          Let&rsquo;s Work <span className="text-neutral-400">Together</span>
         </h2>
 
         {/* Form */}
         <div className="mx-auto mt-14 max-w-2xl text-center">
           <p
             className="text-lg font-medium text-[#0a0a0a]"
-            style={{ fontFamily: 'var(--font-primary)' }}
+            style={{ fontFamily: "var(--font-primary)" }}
           >
             Send a message
           </p>
@@ -168,7 +171,7 @@ export function ContactSection() {
               onChange={handleChange}
               placeholder="Your name"
               className="h-14 w-full rounded-full border border-neutral-200 bg-white px-6 text-[#0a0a0a] placeholder-neutral-400 outline-none transition focus:border-[#B5E64D] focus:ring-2 focus:ring-[#B5E64D]/30"
-              style={{ ...CARD_SHADOW, fontFamily: 'var(--font-primary)' }}
+              style={{ ...CARD_SHADOW, fontFamily: "var(--font-primary)" }}
             />
             <input
               id="email"
@@ -179,7 +182,7 @@ export function ContactSection() {
               onChange={handleChange}
               placeholder="Enter your email"
               className="h-14 w-full rounded-full border border-neutral-200 bg-white px-6 text-[#0a0a0a] placeholder-neutral-400 outline-none transition focus:border-[#B5E64D] focus:ring-2 focus:ring-[#B5E64D]/30"
-              style={{ ...CARD_SHADOW, fontFamily: 'var(--font-primary)' }}
+              style={{ ...CARD_SHADOW, fontFamily: "var(--font-primary)" }}
             />
 
             <textarea
@@ -191,16 +194,16 @@ export function ContactSection() {
               onChange={handleChange}
               placeholder="Tell me about your project..."
               className="w-full resize-none rounded-3xl border border-neutral-200 bg-white px-6 py-4 text-[#0a0a0a] placeholder-neutral-400 outline-none transition focus:border-[#B5E64D] focus:ring-2 focus:ring-[#B5E64D]/30"
-              style={{ ...CARD_SHADOW, fontFamily: 'var(--font-primary)' }}
+              style={{ ...CARD_SHADOW, fontFamily: "var(--font-primary)" }}
             />
 
             <button
               onClick={handleSubmit}
               disabled={loading}
               className="group flex h-14 w-full items-center justify-center gap-2 rounded-full bg-[#B5E64D] px-8 text-base font-semibold text-[#0a0a0a] transition-all duration-200 hover:scale-[1.01] hover:bg-[#0a0a0a] hover:text-white active:scale-100 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:scale-100 disabled:hover:bg-[#B5E64D] disabled:hover:text-[#0a0a0a]"
-              style={{ fontFamily: 'var(--font-primary)' }}
+              style={{ fontFamily: "var(--font-primary)" }}
             >
-              {loading ? 'Sending...' : 'Send'}
+              {loading ? "Sending..." : "Send"}
               <ArrowRightIcon className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
             </button>
 
@@ -208,7 +211,7 @@ export function ContactSection() {
               <p
                 role="status"
                 className="text-center text-sm font-medium text-[#0a0a0a]"
-                style={{ fontFamily: 'var(--font-primary)' }}
+                style={{ fontFamily: "var(--font-primary)" }}
               >
                 Thanks! Your message has been sent.
               </p>
@@ -218,7 +221,7 @@ export function ContactSection() {
               <p
                 role="alert"
                 className="text-center text-sm font-medium text-red-500"
-                style={{ fontFamily: 'var(--font-primary)' }}
+                style={{ fontFamily: "var(--font-primary)" }}
               >
                 {error}
               </p>
@@ -242,13 +245,13 @@ export function ContactSection() {
               <span className="flex min-w-0 flex-col">
                 <span
                   className="text-lg font-bold text-[#0a0a0a]"
-                  style={{ fontFamily: 'var(--font-primary)' }}
+                  style={{ fontFamily: "var(--font-primary)" }}
                 >
                   {item.label}
                 </span>
                 <span
                   className="break-all text-sm text-[#5b5959]"
-                  style={{ fontFamily: 'var(--font-primary)' }}
+                  style={{ fontFamily: "var(--font-primary)" }}
                 >
                   {item.value}
                 </span>
@@ -266,7 +269,7 @@ export function ContactSection() {
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-full border border-neutral-300 px-6 py-2.5 text-base text-[#0a0a0a] transition-all duration-200 hover:border-[#B5E64D] hover:bg-[#B5E64D]"
-              style={{ fontFamily: 'var(--font-primary)' }}
+              style={{ fontFamily: "var(--font-primary)" }}
             >
               {s.label}
             </a>
@@ -276,12 +279,12 @@ export function ContactSection() {
         {/* Footer */}
         <div
           className="mt-16 border-t border-neutral-200 pt-8 text-center text-sm text-[#5b5959]"
-          style={{ fontFamily: 'var(--font-primary)' }}
+          style={{ fontFamily: "var(--font-primary)" }}
         >
-          © {new Date().getFullYear()} Ramanathan Rishiharan. All rights reserved.
+          © {new Date().getFullYear()} Ramanathan Rishiharan. All rights
+          reserved.
         </div>
-
       </div>
     </section>
-  )
+  );
 }
