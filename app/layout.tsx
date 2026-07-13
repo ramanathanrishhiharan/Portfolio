@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     title: "Get a website that actually turns visitors into paying customers",
     description:
       "Fullstack development, AI integration, shipped fast for real businesses.",
-    images: ["https://rishiharan.vercel.app/og-image.png"],
+    images: ["https://rishiharan.vercel.app/og-image.jpg"],
   },
 };
 
