@@ -6,15 +6,37 @@ import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
-  title: "Rishiharan | Full-Stack Developer & AI Enthusiast",
+  title: "Rishiharan — Websites & AI tools that generate real leads",
   description:
-    "Full-stack developer based in Sri Lanka, building web products and AI-integrated tools for businesses worldwide. From lead-generating websites to custom software solutions.",
-  verification: {
-    // Paste the content value from your Search Console HTML tag here,
-    // e.g. google: "abc123...". Leave unset until you verify Search Console.
+    "I build fullstack web products and AI-powered tools for businesses, through Binory. 2 live client products shipped, PrimeLeed and Student Finance Checker.",
+  openGraph: {
+    title: "Get a website that actually turns visitors into paying customers",
+    description:
+      "Fullstack development, AI integration, shipped fast for real businesses. Co-Founder @ Binory.",
+    url: "https://rishiharan.vercel.app",
+    siteName: "Rishiharan",
+    images: [
+      {
+        url: "https://rishiharan.vercel.app/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Rishiharan — Websites & AI tools that generate real leads",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Get a website that actually turns visitors into paying customers",
+    description:
+      "Fullstack development, AI integration, shipped fast for real businesses.",
+    images: ["https://rishiharan.vercel.app/og-image.png"],
   },
 };
 
@@ -24,7 +46,10 @@ export default function RootLayout({
   const gaId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
 
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+    >
       <body className="min-h-full flex flex-col">
         <Navbar />
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
