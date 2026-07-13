@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { motion, useMotionValue } from "framer-motion";
+import { sendGAEvent } from "@next/third-parties/google";
 import FloatingCard from "./Floatingcard";
 
 export default function HeroSection() {
@@ -113,6 +114,12 @@ export default function HeroSection() {
             <motion.a
               href="https://github.com/ramanathanrishhiharan/apix/releases/download/Apix/apix-v1.0.0.apk"
               download
+              onClick={() =>
+                sendGAEvent("event", "apix_download", {
+                  category: "engagement",
+                  label: "Hero section",
+                })
+              }
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#B5E64D] px-7 py-3.5 font-brand text-sm font-semibold text-[#10131A] shadow-[0_10px_30px_-8px_rgba(181,230,77,0.7)] transition-shadow hover:shadow-[0_14px_36px_-8px_rgba(181,230,77,0.85)]"

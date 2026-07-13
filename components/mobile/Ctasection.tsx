@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { motion, useMotionValue } from "framer-motion";
+import { sendGAEvent } from "@next/third-parties/google";
 import FloatingCard from "./Floatingcard";
 
 export default function CTASection() {
@@ -105,6 +106,12 @@ export default function CTASection() {
         <motion.a
           href="https://github.com/ramanathanrishhiharan/apix/releases/download/Apix/apix-v1.0.0.apk"
           download
+          onClick={() =>
+            sendGAEvent("event", "apix_download", {
+              category: "engagement",
+              label: "CTA section",
+            })
+          }
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
