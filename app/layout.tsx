@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     siteName: "Rishiharan",
     images: [
       {
-        url: "https://rishiharan.vercel.app/og-image.jpg",
+        url: "https://rishiharan.vercel.app/og-image-v2.jpg",
         width: 1200,
         height: 630,
         alt: "Rishiharan — Websites & AI tools that generate real leads",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     title: "Get a website that actually turns visitors into paying customers",
     description:
       "Fullstack development, AI integration, shipped fast for real businesses.",
-    images: ["https://rishiharan.vercel.app/og-image.jpg"],
+    images: ["https://rishiharan.vercel.app/og-image-v2.jpg"],
   },
 };
 
