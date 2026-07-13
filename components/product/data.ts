@@ -16,9 +16,9 @@ export const products: Product[] = [
   {
     slug: "apix",
     name: "Apix",
-    tagline: "A camera app that doesn't try to do everything badly.",
+    tagline: "A client management app that every photographers need.",
     description:
-      "Built for Android with Expo. Fast capture, clean UI, no fifteen filters you'll never use.",
+      "Built for Android with Expo. specially for client managemet, bookings and invoce generating .",
     stack: ["Expo", "React Native"],
     status: "Live",
     liveUrl: "/products/apix",
