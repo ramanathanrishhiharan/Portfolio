@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({
@@ -44,6 +44,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   const gaId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
+  const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
 
   return (
     <html
@@ -55,6 +56,9 @@ export default function RootLayout({
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
         {gaId && process.env.NODE_ENV === "production" && (
           <GoogleAnalytics gaId={gaId} />
+        )}
+        {gtmId && process.env.NODE_ENV === "production" && (
+          <GoogleTagManager gtmId={gtmId} />
         )}
       </body>
     </html>
