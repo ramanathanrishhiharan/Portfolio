@@ -38,31 +38,63 @@ export async function POST(req: NextRequest) {
     await transporter.sendMail({
       from: `"Ramanathan Rishiharan" <${process.env.GMAIL_USER}>`,
       to: email,
-      subject: "Your HR Policy Guide is here",
+      subject: "Your HR Personal Brand Growth Guide is here",
       html: `
-        <div style="font-family: -apple-system, Arial, sans-serif; max-width: 480px; margin: 0 auto; line-height: 1.6; color: #111;">
-          <p>Hey ${firstName.toUpperCase()},</p>
-          <p>You signed up for the HR Policy Template, so here it is.</p>
-          <p>Quick gut check: if an employee asked for your leave policy in writing right now, could you hand it to them in under a minute?</p>
-          <p>Most founders can tell you their revenue to the dollar and have no idea what's actually in their own HR policy — because there isn't one, just a Slack message from 18 months ago.</p>
-          <p>That gap is the whole reason this exists.</p>
-          <p>It covers the essentials: leave, conduct, and onboarding, so you're not starting from a blank page.</p>
-          <p>Open it, swap in your company details, and you've got a real policy instead of a Slack message.</p>
-          <p>The onboarding section is the one to start with.</p>
-          <p>Skip it and new hires spend their first week guessing instead of working.</p>
-          <p>
-            <a href="${GUIDE_URL}"
-               style="display:inline-block;background:#111;color:#fff;
-                      padding:14px 24px;border-radius:8px;
-                      text-decoration:none;font-weight:600;margin:16px 0;">
-              → Download the HR Policy Template now
-            </a>
-          </p>
-          <p>
-            Onboarding Team
-          </p>
-        </div>
-      `,
+  <div style="font-family: -apple-system, Arial, sans-serif; max-width: 480px; margin: 0 auto; line-height: 1.6; color: #111;">
+    <p>Hey ${firstName.toUpperCase()},</p>
+
+    <p>You signed up for the <strong>HR Personal Brand Growth Guide</strong>, so here it is.</p>
+
+    <p>
+      Quick question: if someone searched your name on LinkedIn today, 
+      would they immediately understand your expertise and why they should trust you?
+    </p>
+
+    <p>
+      Most HR professionals are great at helping companies hire and build teams,
+      but their own personal brand is almost invisible.
+    </p>
+
+    <p>
+      They share job posts, company updates, and industry news — but rarely build
+      authority around their own experience, insights, and expertise.
+    </p>
+
+    <p>
+      This guide shows you how to turn LinkedIn into a platform that helps you:
+    </p>
+
+    <ul>
+      <li>Build credibility as an HR expert</li>
+      <li>Create content that attracts the right audience</li>
+      <li>Grow your professional network strategically</li>
+      <li>Position yourself as a trusted voice in the HR space</li>
+    </ul>
+
+    <p>
+      Open the guide, implement the framework, and start building a LinkedIn presence
+      that creates opportunities instead of just collecting connections.
+    </p>
+
+    <p>
+      <a href="${GUIDE_URL}"
+         style="display:inline-block;background:#111;color:#fff;
+                padding:14px 24px;border-radius:8px;
+                text-decoration:none;font-weight:600;margin:16px 0;">
+        → Get Your HR Personal Brand Guide
+      </a>
+    </p>
+
+    <p>
+      Start with the content framework section — that's where most HR professionals
+      see the biggest shift.
+    </p>
+
+    <p>
+      Ramanathan Rishiharan
+    </p>
+  </div>
+`,
     });
 
     return NextResponse.json({ success: true });

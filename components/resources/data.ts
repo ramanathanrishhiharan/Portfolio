@@ -16,15 +16,15 @@ export type Resource = {
 
 export const resources: Resource[] = [
   {
-    slug: "hr-policy-template",
-    title: "HR Policy Template",
+    slug: "hr-personal-brand-guide",
+    title: "HR Personal Brand Growth Guide",
     description:
-      "A ready-to-use HR policy document covering the essentials, leave, conduct, and onboarding, so you're not starting from a blank page.",
+      "A practical guide to help HR professionals build authority on LinkedIn, create valuable content, grow their network, and attract better career opportunities.",
     type: "link",
     category: "HR",
-    href: "/free_resources/for_HR",
-    thumbnail: "/hr.png",
-    meta: "Link",
+    href: "/free_resources/hr-personal-brand-guide",
+    thumbnail: "/hr43.png",
+    meta: "Guide",
     accent: "#B5E64D",
   },
 ];
