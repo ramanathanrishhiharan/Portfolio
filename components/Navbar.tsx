@@ -22,6 +22,11 @@ const SHADOW_CONCAVE =
 const SHADOW_GLOW =
   "0 0 30px 6px rgba(181,230,77,0.45), -8px -8px 18px rgba(255,255,255,0.95), 10px 10px 22px rgba(163,177,198,0.55)";
 
+// The CTA link is treated as a distinct button rather than a nav item —
+// it always carries the lime background + glow so it reads as an action,
+// not a destination that only lights up when "active".
+const CTA_HREF = "/contact";
+
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
@@ -100,11 +105,15 @@ export default function Navbar() {
     return pathname.startsWith(link.href);
   };
 
+  // The indicator should only ever track non-CTA links, since the CTA has
+  // its own permanent highlight and shouldn't be "handed" the sliding pill.
   const measure = () => {
-    const activeLink = NAV_LINKS.find((l) => isActive(l));
+    const activeLink = NAV_LINKS.find((l) => l.href !== CTA_HREF && isActive(l));
     const el = activeLink ? itemRefs.current[activeLink.href] : null;
     if (el) {
       setIndicator({ left: el.offsetLeft, width: el.offsetWidth });
+    } else {
+      setIndicator(null);
     }
   };
 
@@ -144,6 +153,30 @@ export default function Navbar() {
             )}
             {NAV_LINKS.map((link) => {
               const active = isActive(link);
+              const isCta = link.href === CTA_HREF;
+
+              if (isCta) {
+                return (
+                  <motion.a
+                    key={link.href}
+                    href={link.href}
+                    ref={(el) => {
+                      itemRefs.current[link.href] = el;
+                    }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.97 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 24 }}
+                    className="relative z-10 shrink-0 whitespace-nowrap ml-1 px-5 py-2.5 rounded-full text-[14px] font-bold text-[#0a0a0a] bg-[#B5E64D]"
+                    style={{
+                      fontFamily: "var(--font-primary)",
+                      boxShadow: SHADOW_GLOW,
+                    }}
+                  >
+                    {link.label}
+                  </motion.a>
+                );
+              }
+
               return (
                 <a
                   key={link.href}
@@ -188,18 +221,20 @@ export default function Navbar() {
             >
               {NAV_LINKS.map((link) => {
                 const active = isActive(link);
+                const isCta = link.href === CTA_HREF;
+
                 return (
                   <a
                     key={link.href}
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className={`px-4 py-3 rounded-2xl text-[16px] font-semibold transition-colors ${
-                      active ? "text-[#0a0a0a]" : "text-slate-500 hover:text-[#0a0a0a]"
+                    className={`px-4 py-3 rounded-2xl text-[16px] font-bold transition-colors ${
+                      isCta || active ? "text-[#0a0a0a]" : "text-slate-500 hover:text-[#0a0a0a]"
                     }`}
                     style={{
                       fontFamily: "var(--font-primary)",
-                      boxShadow: active ? SHADOW_GLOW : "none",
-                      background: active ? "#B5E64D" : "transparent",
+                      boxShadow: isCta || active ? SHADOW_GLOW : "none",
+                      background: isCta || active ? "#B5E64D" : "transparent",
                     }}
                   >
                     {link.label}
