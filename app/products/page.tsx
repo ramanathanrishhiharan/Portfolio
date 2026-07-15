@@ -3,6 +3,7 @@ import ProductsHero from "@/components/product/Hero";
 import ProductsGrid from "@/components/product/Productgrid";
 import ProductsCTA from "@/components/product/Productcta";
 import { ContactSection } from "@/components/Contact";
+import { BookACallPage } from "@/components/motiongraphics/bookpage";
 
 export const metadata: Metadata = {
   title: "Free Products | Rishiharan",
@@ -15,7 +16,7 @@ export default function ProductsPage() {
     <main className="w-full">
       <ProductsHero />
       <ProductsGrid />
-      <ContactSection />
+      <BookACallPage />
     </main>
   );
 }

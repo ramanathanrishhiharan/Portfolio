@@ -6,6 +6,7 @@ import DeliversSection from "@/components/Deliver";
 import { NumbersSection } from "@/components/Numbersection";
 import { Testimonials } from "@/components/Testimonials";
 import { ContactSection } from "@/components/Contact";
+import { BookACallPage } from "@/components/motiongraphics/bookpage";
 
 export default function Home() {
   return (
@@ -16,8 +17,10 @@ export default function Home() {
       <DeliversSection />
       <NumbersSection />
       <Testimonials />
+
       {/* <CrossingMarquee /> */}
-      <ContactSection />
+      {/* <ContactSection /> */}
+       <BookACallPage />
     </>
   );
 }

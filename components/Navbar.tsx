@@ -10,7 +10,9 @@ const NAV_LINKS = [
   { label: "Home", href: "/", id: "home" },
   { label: "Work", href: "/#work", id: "work" },
   { label: "Products", href: "/products", id: null },
-  { label: "Contact", href: "/#contact", id: "contact" },
+  { label: "Free Resources", href: "/free_resources", id: "resources" },
+  { label: "Book a Call", href: "/contact", id: "contact" },
+  
 ] as const;
 
 export default function Navbar() {
