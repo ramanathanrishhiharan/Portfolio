@@ -18,25 +18,36 @@ const variantStyles: Record<
     text: string
     sub: string
     border: string
+    shadow: string
   }
 > = {
+  // Same highlight-on-top / shadow-below depth language used across the site
+  // (KeyButton / SlotButton / Navbar / cards), re-tuned for this dark section:
+  // a soft white sheen along the top edge plus a real drop shadow into the
+  // black background, instead of the light-surface neumorphic pairing.
   green: {
     bg: 'bg-[#B5E64D]',
     text: 'text-neutral-900',
     sub: 'text-neutral-800/80',
     border: 'border-transparent',
+    shadow:
+      '0 16px 40px -12px rgba(181,230,77,0.5), inset 0 1px 0 rgba(255,255,255,0.5)',
   },
   light: {
     bg: 'bg-neutral-100',
     text: 'text-neutral-900',
     sub: 'text-neutral-600',
     border: 'border-transparent',
+    shadow:
+      '0 16px 36px -14px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.6)',
   },
   dark: {
     bg: 'bg-neutral-900',
     text: 'text-white',
     sub: 'text-neutral-400',
     border: 'border-white/10',
+    shadow:
+      '0 12px 30px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06)',
   },
 }
 export function StatCard({
@@ -87,6 +98,7 @@ export function StatCard({
         ease: [0.16, 1, 0.3, 1],
       }}
       className={`relative rounded-2xl border ${styles.border} ${styles.bg} p-6 sm:p-7 overflow-hidden`}
+      style={{ boxShadow: styles.shadow }}
     >
       <div className="flex items-start gap-1">
         <span

@@ -12,6 +12,13 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+// Neumorphic shadow tokens — same language as KeyButton / SlotButton / Navbar /
+// Hero card / ProblemSection icons / DeliversSection pills / ProjectsSection cards.
+const SHADOW_CONVEX =
+  "-8px -8px 18px rgba(255,255,255,0.95), 10px 10px 22px rgba(163,177,198,0.55)";
+const SHADOW_CONCAVE =
+  "inset 3px 3px 8px rgba(163,177,198,0.5), inset -3px -3px 8px rgba(255,255,255,0.9)";
+
 // The three cards shown fanned out in the hero. Keep this to 3, the fan
 // is tuned for that count.
 const featured = products.slice(0, 3);
@@ -196,10 +203,11 @@ export default function ProductsHero() {
                   zIndex: 10,
                 }}
                 transition={{ type: "spring", stiffness: 260, damping: 20 }}
-                className="absolute left-1/2 top-0 w-40 sm:w-64 md:w-72 -translate-x-1/2 rounded-2xl sm:rounded-3xl bg-white shadow-2xl p-3.5 sm:p-5 text-left cursor-default"
+                className="absolute left-1/2 top-0 w-40 sm:w-64 md:w-72 -translate-x-1/2 rounded-2xl sm:rounded-3xl bg-[#e6ebf2] p-3.5 sm:p-5 text-left cursor-default"
                 style={{
                   x: FAN_OFFSET_X[i],
                   zIndex: i === 1 ? 5 : 2,
+                  boxShadow: SHADOW_CONVEX,
                 }}
               >
                 <div className="flex items-center justify-between mb-1.5 sm:mb-2 gap-1">
@@ -224,7 +232,8 @@ export default function ProductsHero() {
                   {product.stack.slice(0, isSmallScreen ? 1 : 2).map((tech) => (
                     <span
                       key={tech}
-                      className="text-[11px] sm:text-[12px] font-semibold text-[#5b6b45] bg-[#EFF7E3] px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full"
+                      className="text-[11px] sm:text-[12px] font-semibold text-[#5b6b45] bg-[#e9eef4] px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full"
+                      style={{ boxShadow: SHADOW_CONCAVE }}
                     >
                       {tech}
                     </span>

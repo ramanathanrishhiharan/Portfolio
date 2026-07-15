@@ -3,9 +3,14 @@ import Link from "next/link";
 import { FiArrowUpRight } from "react-icons/fi";
 import { BlurredStagger } from "./blurtext";
 
-const CARD_SHADOW = {
-  boxShadow: "-2px 12px 22.3px 2px rgba(0,0,0,0.10)",
+// Neumorphic shadow tokens — same language as KeyButton / SlotButton / Navbar /
+// Hero card / ProblemSection icons / DeliversSection pills.
+const SHADOW_CONVEX = {
+  boxShadow:
+    "-8px -8px 18px rgba(255,255,255,0.95), 10px 10px 22px rgba(163,177,198,0.55)",
 };
+const SHADOW_GLOW =
+  "0 0 20px 4px rgba(181,230,77,0.45), -3px -3px 8px rgba(255,255,255,0.9), 4px 4px 10px rgba(163,177,198,0.5)";
 
 const projects = [
   {
@@ -51,8 +56,8 @@ export default function ProjectsSection() {
             href={url}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex flex-col gap-4 rounded-xl bg-white p-4 transition-transform duration-300 hover:-translate-y-1"
-            style={CARD_SHADOW}
+            className="group flex flex-col gap-4 rounded-xl bg-[#e6ebf2] p-4 transition-transform duration-300 hover:-translate-y-1"
+            style={SHADOW_CONVEX}
           >
             {/* Screenshot */}
             <div className="relative w-full overflow-hidden rounded-xl">
@@ -66,7 +71,10 @@ export default function ProjectsSection() {
 
               {/* Ongoing badge — top-right inside image */}
               {ongoing && (
-                <span className="absolute top-3 right-3 flex items-center gap-1.5 bg-[#B5E64D] text-[#0a0a0a] text-[13px] font-semibold px-3 py-1 rounded-full">
+                <span
+                  className="absolute top-3 right-3 flex items-center gap-1.5 bg-[#B5E64D] text-[#0a0a0a] text-[13px] font-semibold px-3 py-1 rounded-full"
+                  style={{ boxShadow: SHADOW_GLOW }}
+                >
                   <span className="w-2 h-2 rounded-full bg-[#0a0a0a] animate-pulse inline-block" />
                   Ongoing
                 </span>
@@ -78,8 +86,13 @@ export default function ProjectsSection() {
               <span className="text-[18px] font-semibold text-[#0a0a0a]">
                 {name}
               </span>
-              <span className="w-8 h-8 rounded-full border border-[#e5e5e5] flex items-center justify-center text-[#0a0a0a] group-hover:bg-[#B5E64D] group-hover:border-[#B5E64D] transition-colors duration-200">
-                <FiArrowUpRight size={16} />
+              <span
+                className="w-8 h-8 rounded-full bg-[#e6ebf2] flex items-center justify-center text-[#0a0a0a] transition-all duration-200 group-hover:bg-[#B5E64D] shadow-[-8px_-8px_18px_rgba(255,255,255,0.95),10px_10px_22px_rgba(163,177,198,0.55)] group-hover:shadow-[0_0_20px_4px_rgba(181,230,77,0.45),-3px_-3px_8px_rgba(255,255,255,0.9),4px_4px_10px_rgba(163,177,198,0.5)]"
+              >
+                <FiArrowUpRight
+                  size={16}
+                  className="transition-transform duration-200 group-hover:rotate-45"
+                />
               </span>
             </div>
           </Link>

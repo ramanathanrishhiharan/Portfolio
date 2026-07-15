@@ -12,6 +12,15 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+// Shared neumorphic shadow tokens — same convex/concave/glow language as
+// KeyButton / SlotButton / Navbar so this card matches the rest of the UI.
+const SHADOW_CONVEX =
+  "-10px -10px 22px rgba(255,255,255,0.95), 12px 12px 26px rgba(163,177,198,0.55)";
+const SHADOW_CONCAVE =
+  "inset 4px 4px 10px rgba(163,177,198,0.5), inset -4px -4px 10px rgba(255,255,255,0.9)";
+const SHADOW_GLOW =
+  "0 0 30px 6px rgba(181,230,77,0.4), -6px -6px 14px rgba(255,255,255,0.9), 8px 8px 18px rgba(163,177,198,0.5)";
+
 export default function Hero() {
   const cardRef = useRef<HTMLDivElement>(null);
   const rotateX = useRef<((value: number) => void) | null>(null);
@@ -149,8 +158,12 @@ export default function Hero() {
             ref={cardRef}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            className="relative mt-16 sm:mt-20 w-full max-w-140 rounded-3xl bg-white shadow-2xl p-6 sm:p-7 text-left"
-            style={{ transformStyle: "preserve-3d", willChange: "transform" }}
+            className="relative mt-16 sm:mt-20 w-full max-w-140 rounded-3xl bg-[#e6ebf2] p-6 sm:p-7 text-left"
+            style={{
+              transformStyle: "preserve-3d",
+              willChange: "transform",
+              boxShadow: SHADOW_CONVEX,
+            }}
           >
             <div className="flex items-center justify-between mb-1">
               <span
@@ -173,28 +186,43 @@ export default function Hero() {
             </p>
 
             <div className="grid grid-cols-3 gap-3">
-              <div className="rounded-2xl bg-[#EFF7E3] p-4">
+              <div
+                className="rounded-2xl bg-[#e9eef4] p-4"
+                style={{ boxShadow: SHADOW_CONCAVE }}
+              >
                 <p className="text-[18px] text-[#5b6b45] font-semibold m-0">
                   New leads
                 </p>
                 <p className="text-[28px] font-bold text-[#0a0a0a] m-0">12</p>
               </div>
-              <div className="rounded-2xl bg-[#EFF7E3] p-4">
+              <div
+                className="rounded-2xl bg-[#e9eef4] p-4"
+                style={{ boxShadow: SHADOW_CONCAVE }}
+              >
                 <p className="text-[18px] text-[#5b6b45] font-semibold m-0">
                   In chat
                 </p>
                 <p className="text-[28px] font-bold text-[#0a0a0a] m-0">10</p>
               </div>
-              <div className="rounded-2xl bg-[#EFF7E3] p-4">
-                <p className="text-[18px] text-[#5b6b45] font-semibold m-0">
+              <div
+                className="rounded-2xl p-4"
+                style={{ background: "#B5E64D", boxShadow: SHADOW_GLOW }}
+              >
+                <p className="text-[18px] text-[#3d4a2b] font-semibold m-0">
                   Closed
                 </p>
                 <p className="text-[28px] font-bold text-[#0a0a0a] m-0">1</p>
               </div>
             </div>
 
-            <div className="mt-4 flex items-start gap-3 rounded-2xl bg-[#f7f7f5] p-4">
-              <div className="w-10 h-10 shrink-0 rounded-full bg-[#0a0a0a] text-white flex items-center justify-center text-[18px] font-bold">
+            <div
+              className="mt-4 flex items-start gap-3 rounded-2xl bg-[#e9eef4] p-4"
+              style={{ boxShadow: SHADOW_CONCAVE }}
+            >
+              <div
+                className="w-10 h-10 shrink-0 rounded-full bg-[#e6ebf2] text-[#0a0a0a] flex items-center justify-center text-[18px] font-bold"
+                style={{ boxShadow: SHADOW_CONVEX }}
+              >
                 A
               </div>
               <div className="min-w-0">

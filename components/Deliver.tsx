@@ -12,6 +12,14 @@ import { FaRocket } from "react-icons/fa"
 import type { IconType } from "react-icons"
 import { BlurredStagger } from "./blurtext"
 
+// ─── Neumorphic shadow tokens — same language as KeyButton / SlotButton /
+// Navbar / Hero card / ProblemSection icons ────────────────────────────────
+
+const SHADOW_CONVEX =
+  "-8px -8px 18px rgba(255,255,255,0.95), 10px 10px 22px rgba(163,177,198,0.55)"
+const SHADOW_GLOW =
+  "0 0 20px 4px rgba(181,230,77,0.45), -3px -3px 8px rgba(255,255,255,0.9), 4px 4px 10px rgba(163,177,198,0.5)"
+
 // ─── Types ───────────────────────────────────────────────────────────────────
 
 interface PillProps {
@@ -21,7 +29,7 @@ interface PillProps {
 }
 
 // ─── Pill component ───────────────────────────────────────────────────────────
-// Each pill = green circle icon + label text inside a light rounded rectangle
+// Each pill = lime glow icon circle + label text inside a neumorphic rounded rectangle
 
 function Pill({ icon: Icon, label, size = "normal" }: PillProps) {
   const isFeatured = size === "featured"
@@ -29,20 +37,21 @@ function Pill({ icon: Icon, label, size = "normal" }: PillProps) {
   return (
     <div
       className={[
-        "flex items-center gap-3 rounded-full bg-[#f0f0f0] font-semibold text-[#0a0a0a] select-none",
+        "flex items-center gap-3 rounded-full bg-[#e6ebf2] font-semibold text-[#0a0a0a] select-none",
         // Featured (middle row): slightly larger padding + text
         isFeatured
           ? "px-5 py-3 text-[20px] md:text-[22px]"
           : "px-4 py-2.5 text-[18px] md:text-[20px]",
       ].join(" ")}
-      style={{ fontFamily: "var(--font-primary)" }}
+      style={{ fontFamily: "var(--font-primary)", boxShadow: SHADOW_CONVEX }}
     >
-      {/* Green circle with white icon */}
+      {/* Lime glow circle with dark icon */}
       <span
         className={[
           "rounded-full bg-[#B5E64D] flex items-center justify-center shrink-0",
           isFeatured ? "w-11 h-11" : "w-10 h-10",
         ].join(" ")}
+        style={{ boxShadow: SHADOW_GLOW }}
       >
         <Icon size={isFeatured ? 24 : 20} color="#0a0a0a" />
       </span>

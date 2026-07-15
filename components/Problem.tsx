@@ -2,9 +2,10 @@ import { FaRocket, FaReact, FaGlobe, FaLaptopCode } from "react-icons/fa"
 import { SiClaude, SiSquare } from "react-icons/si"
 import { BlurredStagger } from "./blurtext"
 
-// Corrected shadow: x:-2, y:12, blur:22.3, spread:2, black 25%
+// Neumorphic convex shadow — same language as KeyButton / SlotButton / Navbar.
 const SHADOW = {
-  boxShadow: "-2px 12px 22.3px 2px rgba(0,0,0,0.25)",
+  boxShadow:
+    "-8px -8px 18px rgba(255,255,255,0.95), 10px 10px 22px rgba(163,177,198,0.55)",
 }
 
 function IconBox({
@@ -20,7 +21,7 @@ function IconBox({
     <div
       className={`${
         small ? "w-16 h-16 rounded-xl" : "w-22 h-22 rounded-2xl"
-      } bg-white flex items-center justify-center shrink-0`}
+      } bg-[#e6ebf2] flex items-center justify-center shrink-0`}
       style={{
         ...SHADOW,
         transform: rotate ? `rotate(${rotate}deg)` : undefined,
