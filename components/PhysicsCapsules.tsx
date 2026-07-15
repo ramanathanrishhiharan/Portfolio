@@ -34,11 +34,17 @@ const COLOR_CLASSES: Record<CapsuleColor, string> = {
   orange: 'bg-[#FF4F2B] text-white',
 }
 
+// Two-layer shadows — a colored glow plus a soft dark drop shadow — tuned
+// for these pills sitting on the black NumbersSection card, same depth
+// language as the lime glow used elsewhere on the site.
 const COLOR_SHADOW: Record<CapsuleColor, string> = {
-  green: '0 14px 34px -14px rgba(181,230,77,0.65)',
-  white: '0 14px 34px -16px rgba(255,255,255,0.45)',
-  blue: '0 14px 34px -14px rgba(108,108,245,0.7)',
-  orange: '0 14px 34px -14px rgba(255,79,43,0.7)',
+  green:
+    '0 14px 30px -14px rgba(181,230,77,0.6), -2px -2px 6px rgba(255,255,255,0.15), 4px 6px 14px rgba(0,0,0,0.35)',
+  white:
+    '-2px -2px 6px rgba(255,255,255,0.3), 4px 8px 18px rgba(0,0,0,0.45)',
+  blue: '0 14px 30px -14px rgba(108,108,245,0.65), 4px 6px 14px rgba(0,0,0,0.35)',
+  orange:
+    '0 14px 30px -14px rgba(255,79,43,0.65), 4px 6px 14px rgba(0,0,0,0.35)',
 }
 
 export function PhysicsCapsules() {

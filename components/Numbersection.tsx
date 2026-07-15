@@ -16,8 +16,13 @@ export function NumbersSection() {
 
   return (
     <section className="w-full max-w-300 mx-auto px-6 md:px-16 xl:px-20 py-20 font-sans">
-      {/* Inner black card */}
-      <div className="relative overflow-hidden rounded-xl bg-black text-white">
+      {/* Inner black card — soft elevation so it lifts off the page,
+          same depth idea as the light neumorphic cards elsewhere, just
+          tuned for a dark surface on a light page. */}
+      <div
+        className="relative overflow-hidden rounded-xl bg-black text-white"
+        style={{ boxShadow: "0 24px 60px -20px rgba(0,0,0,0.35)" }}
+      >
         {/* Background Glow */}
         <div className="pointer-events-none absolute -bottom-40 left-0 h-130 w-[60%] rounded-full bg-[#B5E64D]/25 blur-[140px]" />
         <div className="pointer-events-none absolute -bottom-20 right-10 h-75 w-[40%] rounded-full bg-white/5 blur-[120px]" />
@@ -55,7 +60,13 @@ export function NumbersSection() {
                 solutions that help businesses grow.
               </p>
 
-              <button className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#B5E64D] px-6 py-3 text-sm font-semibold text-black transition-transform hover:scale-[1.03] active:scale-95">
+              <button
+                className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#B5E64D] px-6 py-3 text-sm font-semibold text-black transition-transform hover:scale-[1.03] active:scale-95"
+                style={{
+                  boxShadow:
+                    "0 0 34px 6px rgba(181,230,77,0.4), -3px -3px 8px rgba(255,255,255,0.2), 6px 8px 18px rgba(0,0,0,0.35)",
+                }}
+              >
                 Get Started
                 <ArrowRightIcon className="h-4 w-4" />
               </button>

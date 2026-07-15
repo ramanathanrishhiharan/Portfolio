@@ -11,6 +11,10 @@ interface StatCardProps {
   variant: Variant
   delay?: number
 }
+
+// Dark-surface neumorphic shadows — same soft convex/concave/glow language
+// used across the rest of the site, tuned for sitting on a black card
+// instead of the light #e6ebf2 background.
 const variantStyles: Record<
   Variant,
   {
@@ -21,33 +25,33 @@ const variantStyles: Record<
     shadow: string
   }
 > = {
-  // Same highlight-on-top / shadow-below depth language used across the site
-  // (KeyButton / SlotButton / Navbar / cards), re-tuned for this dark section:
-  // a soft white sheen along the top edge plus a real drop shadow into the
-  // black background, instead of the light-surface neumorphic pairing.
   green: {
     bg: 'bg-[#B5E64D]',
     text: 'text-neutral-900',
     sub: 'text-neutral-800/80',
     border: 'border-transparent',
+    // Lime glow, same treatment as the active nav pill / GO button.
     shadow:
-      '0 16px 40px -12px rgba(181,230,77,0.5), inset 0 1px 0 rgba(255,255,255,0.5)',
+      '0 0 34px 6px rgba(181,230,77,0.4), -3px -3px 8px rgba(255,255,255,0.2), 6px 8px 18px rgba(0,0,0,0.35)',
   },
   light: {
     bg: 'bg-neutral-100',
     text: 'text-neutral-900',
     sub: 'text-neutral-600',
     border: 'border-transparent',
+    // Convex lift: light highlight top-left, soft dark shadow bottom-right.
     shadow:
-      '0 16px 36px -14px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.6)',
+      '-3px -3px 8px rgba(255,255,255,0.5), 6px 8px 18px rgba(0,0,0,0.4)',
   },
   dark: {
     bg: 'bg-neutral-900',
     text: 'text-white',
     sub: 'text-neutral-400',
     border: 'border-white/10',
+    // Nearly the same tone as the parent black card, so this one reads as
+    // recessed/inset rather than raised.
     shadow:
-      '0 12px 30px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06)',
+      'inset 4px 4px 10px rgba(0,0,0,0.6), inset -3px -3px 8px rgba(255,255,255,0.05)',
   },
 }
 export function StatCard({
@@ -97,8 +101,8 @@ export function StatCard({
         delay,
         ease: [0.16, 1, 0.3, 1],
       }}
-      className={`relative rounded-2xl border ${styles.border} ${styles.bg} p-6 sm:p-7 overflow-hidden`}
       style={{ boxShadow: styles.shadow }}
+      className={`relative rounded-2xl border ${styles.border} ${styles.bg} p-6 sm:p-7 overflow-hidden`}
     >
       <div className="flex items-start gap-1">
         <span
