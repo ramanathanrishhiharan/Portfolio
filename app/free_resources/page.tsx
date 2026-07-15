@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import ResourcesHero from "@/components/resources/Hero";
 import ResourcesGrid from "@/components/resources/ResourcesGrid";
-import ResourcesCTA from "@/components/resources/ResourcesCTA";
+import { BookACallPage } from "@/components/motiongraphics/bookpage";
 
 export const metadata: Metadata = {
   title: "Free Resources | Rishiharan",
@@ -14,7 +14,7 @@ export default function ResourcesPage() {
     <main className="w-full">
       <ResourcesHero />
       <ResourcesGrid />
-      <ResourcesCTA />
+       <BookACallPage />
     </main>
   );
 }
